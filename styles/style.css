@@ -1,3 +1,28 @@
 body {
   background-color: pink;
 }
+
+.canvas-container {
+  /* width: 100%;
+  margin: auto; */
+}
+
+.canvas {
+  background-color: #fff;
+}
+
+.gallary-container {
+  display: grid;
+  width: 450px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; */
+  gap: 10px;
+}
+
+.gallary-container > * {
+  width: 200px;
+  height: 200px;
+  border-radius: 3em;
+}

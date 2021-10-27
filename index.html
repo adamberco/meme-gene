@@ -9,8 +9,19 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
-<body>
-    <script src="js/main.js"></script>
+<body onload="init()">
+    <div class="canvas-container">
+        <input type="text" placeholder="Change ME!" oninput="setTxt(this.value)"><br><br>
+        <canvas class="canvas" height="450" width="450"></canvas>
+        <!-- <canvas class="canvas" height="450" width="450" ontouchstart="getStartPos(event)" ontouchmove="draw(event)"
+        ontouchend="stopDraw()" onmousedown="getStartPos(event)" onmousemove="draw(event)"
+        onmouseup="stopDraw()"></canvas> -->
+    </div>
+    <div class="gallary-container"></div>
+
+    <script src=" js/main.js"></script>
+    <script src="js/memeService.js"></script>
+    <script src="js/galleryService.js"></script>
 </body>
 
 </html>
