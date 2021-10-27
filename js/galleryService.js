@@ -9,17 +9,18 @@ var gImgs = [
     {
         id: 2, url: 'meme-imgs (square)/2.jpg', keywords: ['happy']
     },
-    {
-        id: 3, url: 'meme-imgs (square)/3.jpg', keywords: ['happy']
-    },
-    {
-        id: 4, url: 'meme-imgs (square)/4.jpg', keywords: ['happy']
-    },
-    {
-        id: 5, url: 'meme-imgs (square)/5.jpg', keywords: ['happy']
-    },
+    // {
+    //     id: 3, url: 'meme-imgs (square)/3.jpg', keywords: ['happy']
+    // },
+    // {
+    //     id: 4, url: 'meme-imgs (square)/4.jpg', keywords: ['happy']
+    // },
+    // {
+    //     id: 5, url: 'meme-imgs (square)/5.jpg', keywords: ['happy']
+    // },
 
 ];
+
 
 function renderGallery() {
     let strHtml = ''

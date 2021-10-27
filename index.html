@@ -11,7 +11,13 @@
 
 <body onload="init()">
     <div class="canvas-container">
-        <input type="text" placeholder="Change ME!" oninput="setTxt(this.value)"><br><br>
+        <input type="text" placeholder="Change ME!" oninput="setTxt(this.value)">
+        <button class="increase/decrease" onclick="setFontSize('+')">A+</button>
+        <button class="increase/decrease" onclick="setFontSize('-')">A-</button>
+        <button class="up/down" onclick="setLinePos('up')">↑</button>
+        <button class="up/down" onclick="setLinePos('down')">↓</button>
+        <br>
+        <br>
         <canvas class="canvas" height="450" width="450"></canvas>
         <!-- <canvas class="canvas" height="450" width="450" ontouchstart="getStartPos(event)" ontouchmove="draw(event)"
         ontouchend="stopDraw()" onmousedown="getStartPos(event)" onmousemove="draw(event)"
