@@ -4,8 +4,6 @@ let gElCanvas;
 
 let gCtx;
 
-let gFirstLineY = 50
-
 let gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
@@ -14,28 +12,59 @@ let gMeme = {
             txt: 'I never eat Falafel',
             size: 40,
             align: 'center',
-            color: 'white'
-        }
+            color: 'white',
+            posY: 50,
+        },
+        {
+            txt: 'But I Love Israel',
+            size: 40,
+            align: 'center',
+            color: 'white',
+            posY: 400,
+
+        },
     ]
 }
 
 // Render gMeme
-function renderMeme(gMeme) {
+function renderMeme() {
     //render img by id
     let img = new Image();
-    let txt = gMeme.lines[0].txt
-    let curLine = gMeme.lines[gMeme.selectedLineIdx]
+    // let txt = gMeme.lines[0].txt
+    // let curLine = gMeme.lines[gMeme.selectedLineIdx]
     img.src = getImg(gMeme.selectedImgId).url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        gCtx.lineWidth = 2;
-        gCtx.textAlign = curLine.align
-        gCtx.strokeStyle = 'black';
-        gCtx.fillStyle = curLine.color;
-        gCtx.font = `${curLine.size}px Impact`;
-        gCtx.fillText(txt, 225, gFirstLineY);
-        gCtx.strokeText(txt, 225, gFirstLineY);
+        renderLines()
+        markLine()
     }
+}
+
+// Render each line in the gMeme
+function renderLines() {
+    gMeme.lines.forEach(line => {
+        gCtx.textAlign = line.align
+        gCtx.lineWidth = 2;
+        gCtx.strokeStyle = 'black';
+        gCtx.fillStyle = line.color;
+        gCtx.font = `${line.size}px Impact`;
+        gCtx.fillText(line.txt, 225, line.posY);
+        gCtx.strokeText(line.txt, 225, line.posY);
+    });
+}
+
+// Mark the selected line 
+function markLine() {
+    let markedLine = gMeme.lines[gMeme.selectedLineIdx]
+    gCtx.beginPath();
+    gCtx.lineWidth = 2;
+    gCtx.moveTo(2, markedLine.posY - markedLine.size);
+    gCtx.lineTo(gElCanvas.width - 2, markedLine.posY - markedLine.size);
+    gCtx.lineTo(gElCanvas.width - 2, markedLine.posY + 5);
+    gCtx.lineTo(2, markedLine.posY + 5);
+    gCtx.closePath();
+    gCtx.strokeStyle = 'white';
+    gCtx.stroke();
 }
 
 // Get img from gallery model
@@ -51,18 +80,19 @@ function setImg(imgId) {
 
 // Set the text that inputted
 function setTxt(txt) {
-    gMeme.lines[0].txt = txt
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt
     renderMeme(gMeme)
 }
 
 // Change the line pos by button click
 function setLinePos(val) {
+    let currLine = gMeme.lines[gMeme.selectedLineIdx]
     switch (val) {
         case 'up':
-            gFirstLineY -= 10
+            currLine.posY -= 10
             break
         case 'down':
-            gFirstLineY += 10
+            currLine.posY += 10
             break
     }
     renderMeme(gMeme)
@@ -80,6 +110,18 @@ function setFontSize(val) {
     }
     renderMeme(gMeme)
 }
+
+// switch lines by button click
+function switchLine() {
+    if (gMeme.selectedLineIdx === gMeme.lines.length - 1) {
+        gMeme.selectedLineIdx = 0
+    } else { gMeme.selectedLineIdx++ }
+    document.querySelector('.txt-input').value = gMeme.lines[gMeme.selectedLineIdx].txt
+    renderMeme()
+}
+
+
+
 
 
 
