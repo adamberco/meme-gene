@@ -10,21 +10,42 @@
 </head>
 
 <body onload="init()">
-    <div class="canvas-container">
-        <input class="txt-input" type="text" placeholder="Change ME!" oninput="setTxt(this.value)">
-        <button class="increase/decrease" onclick="setFontSize('+')">A+</button>
-        <button class="increase/decrease" onclick="setFontSize('-')">A-</button>
-        <button class="up/down" onclick="setLinePos('up')">↑</button>
-        <button class="up/down" onclick="setLinePos('down')">↓</button>
-        <button class="switch-line" onclick="switchLine()">↓↑</button>
-        <br>
-        <br>
-        <canvas class="canvas" height="450" width="450"></canvas>
-        <!-- <canvas class="canvas" height="450" width="450" ontouchstart="getStartPos(event)" ontouchmove="draw(event)"
+    <div class="main-screen" onclick="toggleMenu()"></div>
+
+    <header class="main-header flex align-center space-between">
+        <div class="logo"><img src="img/LOGO.png" alt=""></div>
+        <nav>
+            <ul class="main-nav clean-list flex  ">
+                <li><button onclick="openGallery()" onmousedown="toggleMenu()">Gallery</button></li>
+                <li><button>Memes</button> </li>
+                <li><button>About</button> </li>
+            </ul>
+            <button class="btn-menu" onclick="toggleMenu()">☰</button>
+        </nav>
+    </header>
+    <main class="main-contant">
+        <!-- <div class="canvas-container">
+            <canvas class="canvas" height="450" width="450"></canvas>
+        </div>
+        <section class="options-bar">
+            <input class="txt-input" type="text" placeholder="Change ME!" oninput="setTxt(this.value)">
+            <section class="buttons">
+                <button class="increase/decrease" onclick="setFontSize('+')">A+</button>
+                <button class="increase/decrease" onclick="setFontSize('-')">A-</button>
+                <button class="up/down" onclick="setLinePos('up')">↑</button>
+                <button class="up/down" onclick="setLinePos('down')">↓</button>
+                <button class="switch-line" onclick="switchLine()">↓↑</button>
+            </section>
+        </section> -->
+    </main>
+
+    <!-- <canvas class="canvas" height="450" width="450" ontouchstart="getStartPos(event)" ontouchmove="draw(event)"
         ontouchend="stopDraw()" onmousedown="getStartPos(event)" onmousemove="draw(event)"
-        onmouseup="stopDraw()"></canvas> -->
-    </div>
+        onmouseup="stopDraw()"></canvas>
+        </div> -->
+
     <div class="gallary-container"></div>
+    <footer>coffeeright2021</footer>
 
     <script src=" js/main.js"></script>
     <script src="js/memeService.js"></script>

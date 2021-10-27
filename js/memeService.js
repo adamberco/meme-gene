@@ -2,7 +2,9 @@
 
 let gElCanvas;
 
-let gCtx;
+let gCtx
+
+let gCtxSize = 450
 
 let gMeme = {
     selectedImgId: 1,
@@ -20,18 +22,43 @@ let gMeme = {
             size: 40,
             align: 'center',
             color: 'white',
-            posY: 400,
-
+            posY: 430,
         },
     ]
+}
+
+function renderCanvas(imgId) {
+    setImg(imgId)
+    let strHtml = `
+    <div class="canvas-container">
+    <canvas class="canvas" height="${gCtxSize}" width="${gCtxSize}"></canvas>
+    </div>
+    <section class="options-bar">
+    <input class="txt-input" type="text" placeholder="Change ME!" oninput="setTxt(this.value)">
+    <section class="buttons">
+        <button class="increase/decrease" onclick="setFontSize('+')">A+</button>
+        <button class="increase/decrease" onclick="setFontSize('-')">A-</button>
+        <button class="up/down" onclick="setLinePos('up')">↑</button>
+        <button class="up/down" onclick="setLinePos('down')">↓</button>
+        <button class="switch-line" onclick="switchLine()">↓↑</button>
+        </section>
+    </section>
+    `
+    document.querySelector('.main-contant').innerHTML = strHtml
+    document.querySelector('.main-contant').style.display = 'flex'
+
+    gElCanvas = document.querySelector('.canvas');
+    gCtx = gElCanvas.getContext('2d');
+
+    renderMeme()
+
+    document.querySelector('.gallary-container').style.display = 'none'
 }
 
 // Render gMeme
 function renderMeme() {
     //render img by id
     let img = new Image();
-    // let txt = gMeme.lines[0].txt
-    // let curLine = gMeme.lines[gMeme.selectedLineIdx]
     img.src = getImg(gMeme.selectedImgId).url
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
@@ -48,8 +75,8 @@ function renderLines() {
         gCtx.strokeStyle = 'black';
         gCtx.fillStyle = line.color;
         gCtx.font = `${line.size}px Impact`;
-        gCtx.fillText(line.txt, 225, line.posY);
-        gCtx.strokeText(line.txt, 225, line.posY);
+        gCtx.fillText(line.txt, gCtxSize / 2, line.posY);
+        gCtx.strokeText(line.txt, gCtxSize / 2, line.posY);
     });
 }
 
@@ -121,9 +148,7 @@ function switchLine() {
 }
 
 
-
-
-
+/////////////////draft//////////////////
 
 // function drawText(x, y) {
 //     gCtx.lineWidth = 2;

@@ -1,16 +1,19 @@
 'use strict'
 
 function init() {
-    gElCanvas = document.querySelector('.canvas');
-    gCtx = gElCanvas.getContext('2d');
-    renderMeme()
+    resizeCanvas()
     renderGallery()
-    // resizeCanvas()
 }
 
-// function resizeCanvas() {
-//     var elContainer = document.querySelector('.canvas-container');
-//     var eloptionsBar = document.querySelector('.options-bar');
-//     gElCanvas.width = elContainer.offsetWidth - 20;
-//     gElCanvas.height = elContainer.offsetHeight - eloptionsBar.offsetHeight - 50
-// }
+function resizeCanvas() {
+    var elheader = document.querySelector('.main-header');
+    if (elheader.offsetWidth <= 420) {
+        gCtxSize = 300
+
+    } else gCtxSize = 450
+}
+
+function toggleMenu() {
+    if (document.querySelector('.main-header').offsetWidth >= 840) return
+    document.body.classList.toggle('menu-open');
+}
