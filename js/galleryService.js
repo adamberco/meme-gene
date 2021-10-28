@@ -21,11 +21,10 @@ var gImgs = [
 
 ];
 
-
 function renderGallery() {
     let strHtml = ''
     const imgs = gImgs
-    strHtml += (imgs.map((img) => `<img data-id=${img.id} src='${img.url}' onclick="renderCanvas(this.dataset.id)">`)).join('')
+    strHtml += (imgs.map((img) => `<img data-id=${img.id} src='${img.url}' onclick="renderEditor(this.dataset.id)">`)).join('')
     document.querySelector('.gallary-container').innerHTML = strHtml
 }
 

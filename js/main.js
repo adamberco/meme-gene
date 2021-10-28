@@ -1,8 +1,10 @@
 'use strict'
 
 function init() {
-    resizeCanvas()
+
+    // resizeCanvas()
     renderGallery()
+    // addListeners()
 }
 
 function resizeCanvas() {
@@ -11,6 +13,9 @@ function resizeCanvas() {
         gCtxSize = 300
 
     } else gCtxSize = 450
+    // const elContainer = document.querySelector('.canvas-container')
+    gElCanvas.width = gCtxSize
+    gElCanvas.height = gCtxSize
 }
 
 function toggleMenu() {

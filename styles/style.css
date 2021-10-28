@@ -76,6 +76,7 @@ header {
 
 .canvas {
   background-color: #fff;
+  cursor: grab;
 }
 
 .options-bar {
@@ -91,7 +92,7 @@ header {
   width: 300px;
 }
 
-.options-bar .buttons {
+.options-bar .text-buttons {
   display: flex;
   justify-content: space-evenly;
   margin-left: 10px;
@@ -99,12 +100,97 @@ header {
 }
 
 .options-bar button {
-  height: 2rem;
-  width: 2rem;
-  background-color: #fff;
-  border: 1px solid black;
+  height: 2.5rem;
+  width: 2.5rem;
+  /* background-color: #fff; */
   border-radius: 10px;
   text-align: center;
+  margin: 10px;
+}
+
+.line-buttons {
+  justify-content: center;
+}
+
+.switch-line {
+  background-image: url(/img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: blue;
+
+  box-shadow: blue 0 0 0px 6px;
+}
+
+.add-line {
+  background-image: url(/img/ICONS/add.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: green;
+
+  box-shadow: green 0 0 0px 6px;
+}
+
+.delete-line {
+  background-image: url(/img/ICONS/trash.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: red;
+  box-shadow: red 0 0 0px 6px;
+}
+
+.text-buttons {
+  background-color: #19a59f;
+  width: 300px;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.plus {
+  background-image: url(/img/ICONS/increase\ font\ -\ icon.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: #fff;
+  box-shadow: black 0 0 0px 3px;
+}
+.minus {
+  background-image: url(/img/ICONS/decrease\ font\ -\ icon.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: #fff;
+  box-shadow: black 0 0 0px 3px;
+}
+.up {
+  background-image: url(/img/ICONS/up.PNG);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-color: #fff;
+  box-shadow: black 0 0 0px 3px;
+}
+.down {
+  background-image: url(/img/ICONS/down.PNG);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-color: #fff;
+  box-shadow: black 0 0 0px 3px;
+}
+
+.finish-buttons {
+  justify-content: space-evenly;
+}
+
+.finish-buttons button {
+  width: auto;
+  height: 30px;
+  margin: 0;
+  padding: 5px 10px;
+  background-color: #fff;
 }
 
 /* GALLERY */
@@ -120,14 +206,14 @@ header {
 .gallary-container > * {
   width: 200px;
   height: 200px;
-  border-radius: 3em;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 /* FOOTER */
 
 footer {
-  height: 100px;
+  height: 80px;
   color: white;
   font-size: 1.5rem;
   background-color: rgb(39, 24, 152);
@@ -232,9 +318,9 @@ body.menu-open .main-screen {
   footer {
     height: 50px;
   }
-}
+  /* } */
 
-@media (max-width: 800px) {
+  /* @media (max-width: 800px) { */
   .main-contant {
     display: flex;
     flex-direction: column;
@@ -250,12 +336,12 @@ body.menu-open .main-screen {
   }
 
   .gallary-container {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-template-rows: auto;
   }
 
   .gallary-container > * {
-    width: 300px;
-    height: 300px;
+    width: 150px;
+    height: 150px;
   }
 }

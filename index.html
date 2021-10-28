@@ -11,7 +11,6 @@
 
 <body onload="init()">
     <div class="main-screen" onclick="toggleMenu()"></div>
-
     <header class="main-header flex align-center space-between">
         <div class="logo"><img src="img/LOGO.png" alt=""></div>
         <nav>
@@ -29,12 +28,20 @@
         </div>
         <section class="options-bar">
             <input class="txt-input" type="text" placeholder="Change ME!" oninput="setTxt(this.value)">
-            <section class="buttons">
-                <button class="increase/decrease" onclick="setFontSize('+')">A+</button>
-                <button class="increase/decrease" onclick="setFontSize('-')">A-</button>
-                <button class="up/down" onclick="setLinePos('up')">↑</button>
-                <button class="up/down" onclick="setLinePos('down')">↓</button>
-                <button class="switch-line" onclick="switchLine()">↓↑</button>
+            <section class="line-buttons flex">
+                <button class="switch-line" onclick="switchLine()"></button>
+                <button class="add-line" onclick="addLine()"></button>
+                <button class="delete-line" onclick="deleteLine()"></button>
+            </section>
+            <section class="text-buttons">
+                <button class="increase/decrease plus" onclick="setFontSize('+')"></button>
+                <button class="increase/decrease minus" onclick="setFontSize('-')"></button>
+                <button class="up/down up" onclick="setLinePos('up')"></button>
+                <button class="up/down down" onclick="setLinePos('down')"></button>
+            </section>
+            <section class="finish-buttons flex">
+                <button>share</button>
+                <button>download</button>
             </section>
         </section> -->
     </main>
@@ -44,7 +51,9 @@
         onmouseup="stopDraw()"></canvas>
         </div> -->
 
-    <div class="gallary-container"></div>
+    <div class="gallary-container">
+
+    </div>
     <footer>coffeeright2021</footer>
 
     <script src=" js/main.js"></script>
