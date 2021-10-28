@@ -7,10 +7,8 @@
 /* BASIC */
 
 html {
-  /* font-family: Lato-bold, sans-serif;
+  font-family: Lato-bold, sans-serif;
   font-weight: 400;
-  color: #808080;
-  line-height: 1.25; */
 }
 
 body {
@@ -35,7 +33,7 @@ button {
 
 header {
   height: 100px;
-  background-color: rgb(39, 24, 152);
+  background-color: #271898;
   margin: 20px;
   border-radius: 3em;
 }
@@ -77,6 +75,9 @@ header {
 .canvas {
   background-color: #fff;
   cursor: grab;
+  border-radius: 30px;
+  border: 8px solid #383b42;
+  /* box-shadow: #383b42 0 0 0px 8px; */
 }
 
 .options-bar {
@@ -84,6 +85,7 @@ header {
   flex-direction: column;
   background-color: #383b42;
   border-radius: 3em;
+  border: 2px solid white;
 }
 .options-bar input {
   line-height: 2em;
@@ -112,8 +114,13 @@ header {
   justify-content: center;
 }
 
+.line-buttons button:hover {
+  box-shadow: white 0 0 0px 6px;
+  background-color: #fff;
+}
+
 .switch-line {
-  background-image: url(/img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png);
+  background-image: url(../img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 90%;
@@ -123,7 +130,7 @@ header {
 }
 
 .add-line {
-  background-image: url(/img/ICONS/add.png);
+  background-image: url(../img/ICONS/add.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 90%;
@@ -133,12 +140,20 @@ header {
 }
 
 .delete-line {
-  background-image: url(/img/ICONS/trash.png);
+  background-image: url(../img/ICONS/trash.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 90%;
   background-color: red;
   box-shadow: red 0 0 0px 6px;
+}
+.save-meme {
+  background-image: url(../img/ICONS/save.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: yellow;
+  box-shadow: yellow 0 0 0px 6px;
 }
 
 .text-buttons {
@@ -147,9 +162,12 @@ header {
   border-radius: 10px;
   margin: 10px;
 }
+.text-buttons button:hover {
+  background-color: #383b42;
+}
 
 .plus {
-  background-image: url(/img/ICONS/increase\ font\ -\ icon.png);
+  background-image: url(../img/ICONS/increase\ font\ -\ icon.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 90%;
@@ -157,7 +175,7 @@ header {
   box-shadow: black 0 0 0px 3px;
 }
 .minus {
-  background-image: url(/img/ICONS/decrease\ font\ -\ icon.png);
+  background-image: url(../img/ICONS/decrease\ font\ -\ icon.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 90%;
@@ -165,7 +183,7 @@ header {
   box-shadow: black 0 0 0px 3px;
 }
 .up {
-  background-image: url(/img/ICONS/up.PNG);
+  background-image: url(../img/ICONS/uup2.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 60%;
@@ -173,7 +191,7 @@ header {
   box-shadow: black 0 0 0px 3px;
 }
 .down {
-  background-image: url(/img/ICONS/down.PNG);
+  background-image: url(../img/ICONS/downn.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 60%;
@@ -186,11 +204,21 @@ header {
 }
 
 .finish-buttons button {
-  width: auto;
+  width: 120px;
   height: 30px;
   margin: 0;
   padding: 5px 10px;
-  background-color: #fff;
+  background-color: #271898;
+  color: #ffffff;
+}
+
+.finish-buttons button:hover {
+  background-color: #5b51a5;
+}
+
+.finish-buttons button a {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 /* GALLERY */
@@ -208,6 +236,79 @@ header {
   height: 200px;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* MEMES-GALLERY */
+
+.memes-container {
+  display: none;
+}
+
+/* MODAL */
+
+.modal {
+  position: fixed;
+  display: none;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  height: 350px;
+  width: 350px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 3rem;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.open {
+  display: flex;
+}
+
+.exit {
+  align-self: flex-end;
+  background-color: #fff;
+  color: #c2c2c2;
+  border: 1px #ffffff solid;
+  margin-inline-end: 10px;
+  margin-block-end: 10px;
+  transition: 0.3s;
+}
+
+.exit:hover {
+  color: #000;
+  border: 1px #000000 solid;
+}
+
+.btn {
+  width: 10.3rem;
+  border: 5px #808080 solid;
+  border-radius: 3em;
+  background-color: #fff;
+  color: #808080;
+  font-size: 1rem;
+  line-height: 2.5rem;
+  font-family: Lato-bold;
+  transition: 0.3s;
+  text-align: center;
+}
+
+.btn:hover {
+  border: 5px rgb(39, 24, 152) solid;
+  color: #58c93a;
+  background-color: #d9ffce;
+  transition: 0.3s;
+}
+
+.btn > * {
+  text-decoration: none;
+  color: black;
+  font-size: 1.5em;
+}
+.btn:hover > * {
+  text-decoration: none;
+  color: rgb(39, 24, 152);
+  /* font-size: 2.5em; */
 }
 
 /* FOOTER */

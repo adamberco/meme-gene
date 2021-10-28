@@ -1,11 +1,12 @@
 'use strict'
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
+const key = 'userMemeDB'
 
 let gElCanvas
-
 let gCtx
-
 let gCtxSize = 300
+let gUserMemes = []
+let gNextId = 101
 
 let gMeme = {
     selectedImgId: null,
@@ -17,15 +18,6 @@ let gMeme = {
             align: 'center',
             color: 'white',
             posY: 50,
-            isDrag: false
-
-        },
-        {
-            txt: 'But I Love Israel',
-            size: 40,
-            align: 'center',
-            color: 'white',
-            posY: 430,
             isDrag: false
 
         },
@@ -46,6 +38,7 @@ function renderEditor(imgId) {
         <button class="switch-line" onclick="switchLine()"></button>
         <button class="add-line" onclick="addLine()"></button>
         <button class="delete-line" onclick="deleteLine()"></button>
+        <button class="save-meme" onclick="saveMeme()"></button>
     </section>
     <section class="text-buttons">
         <button class="increase/decrease plus" onclick="setFontSize('+')"></button>
@@ -54,10 +47,8 @@ function renderEditor(imgId) {
         <button class="up/down down" onclick="setLinePos('down')"></button>
     </section>
     <section class="finish-buttons flex">
-        <button>Share</button>
-        <button>Download</button>
-        <button>Upload</button>
-        <button>Save</button>
+        <button><a class="download" href="#" onclick="downloadMeme(this)" download="myphoto">Download</a></button>
+        <button class="" onclick="toggleModal()" onmousedown="uploadImg()">Share</button>
     </section>
     </section>
     `
@@ -69,6 +60,33 @@ function renderEditor(imgId) {
     addListeners()
 
     document.querySelector('.gallary-container').style.display = 'none'
+}
+
+function getUserMemes() {
+    gUserMemes = loadFromStorage(key) || []
+}
+
+function userMemeSelect(memeId) {
+    let meme = gUserMemes.find((meme) => meme.id === memeId)
+    gMeme = JSON.parse(JSON.stringify(meme.data))
+    document.querySelector('.main-contant').style.display = 'flex'
+    document.querySelector('.memes-container').style.display = 'none'
+    renderMeme()
+}
+
+function saveMeme() {
+    console.log('saved')
+    gNextId = (!gUserMemes.length) ? 101 : gUserMemes.length + 101
+    const data = gElCanvas.toDataURL('image/jpeg');
+    let newMeme = JSON.parse(JSON.stringify(gMeme));
+    gUserMemes.push({ id: gNextId++, data: newMeme, url: data, })
+    saveToStorage(key, gUserMemes)
+}
+
+function downloadMeme(elLink) {
+    const data = gElCanvas.toDataURL('image/jpeg');
+    elLink.href = data;
+    elLink.download = 'my-img.png'
 }
 
 // Render gMeme
@@ -85,6 +103,7 @@ function renderMeme() {
 
 // Render each line in the gMeme
 function renderLines() {
+    if (!gMeme.lines.length) return
     gMeme.lines.forEach(line => {
         gCtx.textAlign = line.align
         gCtx.lineWidth = 2;
@@ -128,22 +147,9 @@ function setTxt(txt) {
     renderMeme(gMeme)
 }
 
-// Change the line pos by button click
-function setLinePos(val) {
-    let currLine = getLine()
-    switch (val) {
-        case 'up':
-            currLine.posY -= 10
-            break
-        case 'down':
-            currLine.posY += 10
-            break
-    }
-    renderMeme(gMeme)
-}
-
 // Change the font size by button click
 function setFontSize(val) {
+    if (gMeme.selectedLineIdx === null) return
     switch (val) {
         case '+':
             getLine().size += 3
@@ -153,15 +159,6 @@ function setFontSize(val) {
             break
     }
     renderMeme(gMeme)
-}
-
-// switch lines by button click
-function switchLine() {
-    if (gMeme.selectedLineIdx === gMeme.lines.length - 1 || gMeme.selectedLineIdx === null) {
-        gMeme.selectedLineIdx = 0
-    } else { gMeme.selectedLineIdx++ }
-    document.querySelector('.txt-input').value = getLine().txt
-    renderMeme()
 }
 
 // get the coord on the canvas
@@ -180,10 +177,64 @@ function getEvPos(ev) {
     }
     return pos
 }
+// MEME LINES HANDLE
+
+function switchLine() {
+    if (gMeme.lines.length === 0) return
+    if (gMeme.selectedLineIdx === gMeme.lines.length - 1 || gMeme.selectedLineIdx === null) {
+        gMeme.selectedLineIdx = 0
+    } else { gMeme.selectedLineIdx++ }
+
+    document.querySelector('.txt-input').value = getLine().txt
+    renderMeme()
+}
+
+function deleteLine() {
+    if (gMeme.selectedLineIdx === null) return
+    let lineIdx = gMeme.selectedLineIdx
+    gMeme.lines.splice(lineIdx, 1)
+    if (gMeme.lines.length === 0) gMeme.selectedLineIdx = null
+    else gMeme.selectedLineIdx = gMeme.lines.length - 1
+    renderMeme()
+}
+
+function addLine() {
+    let posY
+    if (gMeme.lines.length === 0) posY = 50
+    else if (gMeme.lines.length === 1) posY = gElCanvas.height - 20
+    else posY = gElCanvas.height / 2 - 20
+    let newLine = {
+        txt: `I'm a new line!! `,
+        size: 40,
+        align: 'center',
+        color: 'white',
+        posY: posY,
+        isDrag: false
+    }
+    gMeme.lines.push(newLine)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+    document.querySelector('.txt-input').value = getLine().txt
+    renderMeme()
+}
 
 // get the selected line
 function getLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+// Change the line pos by button click
+function setLinePos(val) {
+    if (gMeme.selectedLineIdx === null) return
+    let currLine = getLine()
+    switch (val) {
+        case 'up':
+            currLine.posY -= 15
+            break
+        case 'down':
+            currLine.posY += 15
+            break
+    }
+    renderMeme(gMeme)
 }
 
 // enable line dragging
@@ -203,7 +254,7 @@ function onDown(ev) {
     if (!canvasClicked(ev)) return
     setLineDrag(true)
     // gStartPos = pos
-    document.querySelector('canvas').style.cursor = 'grabbing'
+    // document.querySelector('canvas').style.cursor = 'grabbing'
 }
 
 // handale canvas mousemove/touchmove event
@@ -229,14 +280,12 @@ function onMove(ev) {
 function moveLine(dy) {
     const line = getLine();
     line.posY += dy
-    // gCircle.pos.x += dx
-    // gCircle.pos.y += dy
 }
 
 // handale canvas mouseup/touchend event
 function onUp() {
     setLineDrag(false)
-    document.querySelector('canvas').style.cursor = 'grab'
+    // document.querySelector('canvas').style.cursor = 'grab'
 }
 
 // handale canvas click event
@@ -244,6 +293,7 @@ function canvasClicked(ev) {
     let clickedLineIdx = gMeme.lines.findIndex(line => {
         return ev.offsetY <= line.posY && ev.offsetY >= line.posY - line.size
     })
+
     if (gTouchEvs.includes(ev.type)) {
         ev = ev.changedTouches[0]
         let currY = ev.pageY - ev.target.offsetTop - ev.target.clientTop
@@ -254,6 +304,7 @@ function canvasClicked(ev) {
 
     if (clickedLineIdx !== -1) {
         gMeme.selectedLineIdx = clickedLineIdx
+        document.querySelector('.txt-input').value = getLine().txt
         renderMeme()
         return true
     } else {
@@ -285,26 +336,3 @@ function addTouchListeners() {
     gElCanvas.addEventListener('touchstart', onDown)
     gElCanvas.addEventListener('touchend', onUp)
 }
-
-/////////////////draft//////////////////
-
-// function drawText(x, y) {
-//     gCtx.lineWidth = 2;
-//     gCtx.strokeStyle = gStrokeColor;
-//     gCtx.fillStyle = gFillColor;
-//     gCtx.font = `${gSize}px Arial`;
-//     gCtx.fillText(gTxt, x, y);
-//     gCtx.strokeText(gTxt, x, y);
-// }
-
-// function renderImg(img) {
-//     gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-// }
-
-// function drawImg() {
-//     var img = new Image();
-//     img.src = 'img/1.png';
-//     img.onload = () => {
-//         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-//     };
-// }

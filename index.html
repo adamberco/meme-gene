@@ -16,49 +16,29 @@
         <nav>
             <ul class="main-nav clean-list flex  ">
                 <li><button onclick="openGallery()" onmousedown="toggleMenu()">Gallery</button></li>
-                <li><button>Memes</button> </li>
-                <li><button>About</button> </li>
+                <li><button onclick="openMemes()" onmousedown="toggleMenu()">Memes</button> </li>
+                <!-- <li><button>About</button> </li> -->
             </ul>
             <button class="btn-menu" onclick="toggleMenu()">☰</button>
         </nav>
     </header>
     <main class="main-contant">
-        <!-- <div class="canvas-container">
-            <canvas class="canvas" height="450" width="450"></canvas>
-        </div>
-        <section class="options-bar">
-            <input class="txt-input" type="text" placeholder="Change ME!" oninput="setTxt(this.value)">
-            <section class="line-buttons flex">
-                <button class="switch-line" onclick="switchLine()"></button>
-                <button class="add-line" onclick="addLine()"></button>
-                <button class="delete-line" onclick="deleteLine()"></button>
-            </section>
-            <section class="text-buttons">
-                <button class="increase/decrease plus" onclick="setFontSize('+')"></button>
-                <button class="increase/decrease minus" onclick="setFontSize('-')"></button>
-                <button class="up/down up" onclick="setLinePos('up')"></button>
-                <button class="up/down down" onclick="setLinePos('down')"></button>
-            </section>
-            <section class="finish-buttons flex">
-                <button>share</button>
-                <button>download</button>
-            </section>
-        </section> -->
     </main>
-
-    <!-- <canvas class="canvas" height="450" width="450" ontouchstart="getStartPos(event)" ontouchmove="draw(event)"
-        ontouchend="stopDraw()" onmousedown="getStartPos(event)" onmousemove="draw(event)"
-        onmouseup="stopDraw()"></canvas>
-        </div> -->
-
-    <div class="gallary-container">
-
+    <div class="gallary-container"></div>
+    <div class="memes-container gallary-container"></div>
+    <div class="modal">
+        <h3>Share Your Cool Meme On FaceBook!</h3>
+        <section class="btn"></section>
+        <button class="exit" onclick="toggleModal()">X</button>
     </div>
-    <footer>coffeeright2021</footer>
+    <footer>coffeeright2021 - Developed by Adam Bercovich</footer>
 
     <script src=" js/main.js"></script>
+    <script src="js/uploadService.js"></script>
+    <script src="js/storage-service.js"></script>
     <script src="js/memeService.js"></script>
     <script src="js/galleryService.js"></script>
+
 </body>
 
 </html>
