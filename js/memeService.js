@@ -45,7 +45,8 @@ function renderEditor(imgId) {
         <button class="increase/decrease minus" onclick="setFontSize('-')"></button>
         <button class="up/down up" onclick="setLinePos('up')"></button>
         <button class="up/down down" onclick="setLinePos('down')"></button>
-    </section>
+        <input class="color" type="color" name="" id="" onchange="setLineColor(this.value)">
+        </section>
     <section class="finish-buttons flex">
         <button><a class="download" href="#" onclick="downloadMeme(this)" download="myphoto">Download</a></button>
         <button class="" onclick="toggleModal()" onmousedown="uploadImg()">Share</button>
@@ -60,6 +61,14 @@ function renderEditor(imgId) {
     addListeners()
 
     document.querySelector('.gallary-container').style.display = 'none'
+}
+
+
+function setLineColor(color) {
+    if (gMeme.selectedLineIdx === null) return
+    let line = getLine()
+    line.color = color
+    renderMeme()
 }
 
 function getUserMemes() {
@@ -243,6 +252,8 @@ function setLineDrag(isDrag) {
     if (!line) return
     line.isDrag = isDrag
 }
+
+
 
 // handale canvas mousedown/touchstart event
 function onDown(ev) {
