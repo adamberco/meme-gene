@@ -18,18 +18,32 @@
                 <li><button onclick="openGallery()" onmousedown="toggleMenu()">Gallery</button></li>
                 <li><button onclick="openMemes()" onmousedown="toggleMenu()">Memes</button> </li>
                 <!-- <li><button>About</button> </li> -->
-
             </ul>
             <button class="btn-menu" onclick="toggleMenu()">☰</button>
         </nav>
     </header>
-    <main class="main-contant">
-    </main>
-    <div class="gallary-container"></div>
-    <div class="memes-container gallary-container"></div>
+    <main class="main-contant"></main>
+    <div class="gallery-container"></div>
+    <div class="gallery-bar flex">
+        <div class="search-bar flex">
+            <input type="text" placeholder="Search" oninput="onSetFilter(this.value)" autofocus>
+        </div>
+        <div class="keyword-filter flex">
+            <span onclick="onSetFilter(this.innerText)">Funny</span><span
+                onclick="onSetFilter(this.innerText)">Political</span><span
+                onclick="onSetFilter(this.innerText)">Kids</span>
+            <span onclick="onSetFilter(this.innerText)">Animals</span><span
+                onclick="onSetFilter(this.innerText)">Cats</span><span
+                onclick="onSetFilter(this.innerText)">Cartoon</span>
+        </div>
+
+    </div>
+    <div class="gallery-image gallery"></div>
+    </div>
+    <div class="memes-container gallery"></div>
     <div class="modal">
-        <h3>Share Your Cool Meme On FaceBook!</h3>
-        <section class="btn"></section>
+        <h2>Share Your Cool Meme On Facebook!</h2>
+        <section class="btn-container"></section>
         <button class="exit" onclick="toggleModal()">X</button>
     </div>
     <footer>coffeeright2021 - Developed by Adam Bercovich</footer>

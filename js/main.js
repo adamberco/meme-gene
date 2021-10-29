@@ -23,7 +23,7 @@ function toggleMenu() {
 function openMemes() {
     renderEditor(1)
     document.querySelector('.main-contant').style.display = 'none'
-    document.querySelector('.gallary-container').style.display = 'none'
+    document.querySelector('.gallery-container').style.display = 'none'
     document.querySelector('.memes-container').style.display = 'grid'
     let strHtml = ''
     const imgs = gUserMemes
@@ -35,3 +35,6 @@ function toggleModal() {
     document.body.classList.toggle('menu-open');
     document.querySelector('.modal').classList.toggle('open')
 }
+
+/////////////////////////////////////////////
+

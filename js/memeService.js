@@ -60,7 +60,7 @@ function renderEditor(imgId) {
     resizeCanvas()
     addListeners()
 
-    document.querySelector('.gallary-container').style.display = 'none'
+    document.querySelector('.gallery-container').style.display = 'none'
 }
 
 
