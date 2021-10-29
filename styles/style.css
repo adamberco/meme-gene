@@ -506,7 +506,6 @@ body.menu-open .main-screen {
 
   .main-contant {
     margin-top: 90px;
-
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -543,5 +542,9 @@ body.menu-open .main-screen {
 
   .gallery-container {
     margin-top: 70px;
+  }
+
+  .memes-container {
+    margin-top: 90px;
   }
 }

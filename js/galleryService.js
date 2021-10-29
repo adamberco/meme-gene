@@ -91,7 +91,7 @@ function openGallery() {
     document.querySelector('.main-contant').style.display = 'none'
     document.querySelector('.memes-container').style.display = 'none'
     document.querySelector('.gallery-container').style.display = 'block'
-    document.querySelector('.gallery-image').style.display = 'flex'
+    document.querySelector('.gallery-image').style.display = 'grid'
 }
 
 function onSetFilter(filterBy) {
