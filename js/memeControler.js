@@ -6,8 +6,9 @@ function openMemes() {
     document.querySelector('.gallery-container').style.display = 'none'
     document.querySelector('.memes-container').style.display = 'grid'
     let strHtml = ''
-    const imgs = gUserMemes
-    strHtml += (imgs.map((img) => `<img data-id=0 src='${img.url}' onclick= "userMemeSelect(${img.id})">`)).join('')
+    const userMemes = gUserMemes
+    strHtml += (userMemes.map((meme) => `<div><img data-id=0 src='${meme.url}' onclick= "userMemeSelect(${meme.id})">
+    <button class="del-meme" onclick="deleteMeme(${meme.id})">X</button></div>`)).join('')
     document.querySelector('.memes-container').innerHTML = strHtml
 }
 
@@ -17,4 +18,14 @@ function userMemeSelect(memeId) {
     document.querySelector('.main-contant').style.display = 'flex'
     document.querySelector('.memes-container').style.display = 'none'
     renderMeme()
+}
+
+function deleteMeme(id) {
+    console.log('hi!')
+    console.log('meme!', id)
+    let idx = gUserMemes.findIndex(meme => meme.id === id)
+    console.log('idx', idx)
+    gUserMemes.splice(idx, 1)
+    saveToStorage(key, gUserMemes)
+    openMemes()
 }
