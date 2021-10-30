@@ -1,6 +1,6 @@
 'use strict'
 let gFilterBy = ''
-//happy surprised animals dogs cats baby kids funny cartoon matrix
+
 let gKeywords = { 'happy': 12, 'funny puk': 1 }
 
 let gImgs = [
@@ -63,29 +63,11 @@ let gImgs = [
 
 function renderGallery() {
     let strHtml = ``
-    //     <div class="gallery-bar flex">
-    //     <div class="search-bar flex">
-    //         <input type="text" placeholder="Search" value='${gFilterBy}' oninput="onSetFilter(this.value)" autofocus>
-    //     </div>
-    //     <div class="keyword-filter flex">
-    //         <span>Funny</span><span>Political</span><span>Kids</span>
-    //         <span>Animals</span><span>Cats</span><span>Cartoon</span>
-    //     </div>
-
-    // </div>
-    // <div class="gallery-image gallery">
-
-    // const imgs = gImgs
     const imgs = getImgForDisplay()
     strHtml += (imgs.map((img) => `<img data-id=${img.id} src='${img.url}' onclick="renderEditor(this.dataset.id)">`)).join('')
-    strHtml += `
-    </div>
-    
-    `
+    strHtml += `</div>`
     document.querySelector('.gallery-image').innerHTML = strHtml
-
 }
-
 
 function openGallery() {
     document.querySelector('.main-contant').style.display = 'none'
@@ -94,16 +76,9 @@ function openGallery() {
     document.querySelector('.gallery-image').style.display = 'grid'
 }
 
-function onSetFilter(filterBy) {
-    console.log('onSetFilter Filtering By:', filterBy);
-    setFilter(filterBy);
-    renderGallery();
-}
-
 function setFilter(filterBy) {
     let filter = filterBy.toLowerCase()
     if (filter === 'all') filter = ''
-    console.log('setFilter filterBy', filter)
     gFilterBy = filter
 }
 
@@ -114,4 +89,9 @@ function getImgForDisplay() {
         return (img.keywords.find((keyword) => keyword.includes(gFilterBy)))
     })
     return imgs
+}
+
+// Get img from gallery model
+function getImg(id) {
+    return gImgs.find((img) => img.id === id)
 }

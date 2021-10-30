@@ -4,6 +4,24 @@
 
 /* TYPOGRAPHY */
 
+@font-face {
+  font-family: "Apex";
+  src: url(../fonts/Apex-SemiBold.ttf);
+}
+@font-face {
+  font-family: "Comic";
+  src: url(../fonts/ComicNeue-Bold.ttf);
+}
+@font-face {
+  font-family: "Gest";
+  src: url(../fonts/Gest-Regular.otf);
+}
+
+@font-face {
+  font-family: "Sunny";
+  src: url(../fonts/SunnyspellsRegular.otf);
+}
+
 /* BASIC */
 
 html {
@@ -13,12 +31,7 @@ html {
 
 body {
   margin: 0;
-  /* background-color: #22252c; */
   background-color: #21262a;
-}
-
-img {
-  /* width: 100%; */
 }
 
 button {
@@ -26,14 +39,11 @@ button {
   cursor: pointer;
 }
 
-/* LAYOUT */
-
 /* COMPONENTS */
 
 /* HEADER */
 
 header {
-  position: fixed;
   height: 100px;
   width: 100%;
   background-color: #271898;
@@ -64,10 +74,11 @@ header {
 /* MAIN-CONTANT */
 
 .main-contant {
-  margin-top: 130px;
+  margin: 15px;
   display: none;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 /* CANVAS */
@@ -81,7 +92,6 @@ header {
   cursor: grab;
   border-radius: 30px;
   border: 8px solid #383b42;
-  /* box-shadow: #383b42 0 0 0px 8px; */
 }
 
 .options-bar {
@@ -103,12 +113,19 @@ header {
   justify-content: space-evenly;
   margin-left: 10px;
   margin-right: 10px;
+  flex-wrap: wrap;
+}
+
+.text-buttons select {
+  height: 30px;
+  align-self: center;
+  flex: 1;
+  margin-left: 5px;
 }
 
 .options-bar button {
   height: 2.5rem;
   width: 2.5rem;
-  /* background-color: #fff; */
   border-radius: 10px;
   text-align: center;
   margin: 10px;
@@ -130,7 +147,6 @@ header {
   background-repeat: no-repeat;
   background-size: 90%;
   background-color: blue;
-
   box-shadow: blue 0 0 0px 6px;
 }
 
@@ -171,46 +187,43 @@ header {
   background-color: #383b42;
 }
 
-.plus {
-  background-image: url(../img/ICONS/increase\ font\ -\ icon.png);
+.text-buttons button {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 90%;
-  background-color: #fff;
-  box-shadow: black 0 0 0px 3px;
-}
-.minus {
-  background-image: url(../img/ICONS/decrease\ font\ -\ icon.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 90%;
-  background-color: #fff;
-  box-shadow: black 0 0 0px 3px;
-}
-.up {
-  background-image: url(../img/ICONS/uup2.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 80%;
-  background-color: #fff;
-  box-shadow: black 0 0 0px 3px;
-}
-.down {
-  background-image: url(../img/ICONS/downn.png);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 80%;
   background-color: #fff;
   box-shadow: black 0 0 0px 3px;
 }
 
-.color {
-  width: 40px;
-  height: 40px;
-  margin: 10px;
-  background-color: #fff;
-  box-shadow: black 0 0 0px 3px;
-  border-radius: 10px;
+.plus {
+  background-image: url(../img/ICONS/increase\ font\ -\ icon.png);
+}
+.minus {
+  background-image: url(../img/ICONS/decrease\ font\ -\ icon.png);
+}
+
+.align-left {
+  background-image: url(../img/ICONS/align-to-left.png);
+}
+
+.text-buttons .align-center {
+  background-image: url(../img/ICONS/center-text-alignment.png);
+}
+
+.align-right {
+  background-image: url(../img/ICONS/align-to-right.png);
+}
+
+.line-color {
+  background-image: url(../img/ICONS/text\ stroke.png);
+}
+.stroke-color {
+  background-image: url(../img/ICONS/paint-board-and-brush.png);
+}
+
+button input {
+  opacity: 0;
+  cursor: pointer;
 }
 
 .finish-buttons {
@@ -238,12 +251,9 @@ header {
 /*Gallery BAR*/
 
 .gallery-bar {
-  /* width: 100%; */
   justify-content: space-between;
   align-items: center;
   margin: 15px;
-  /* margin-inline-start: 30px;
-  margin-inline-end: 30px; */
 }
 
 .search-bar {
@@ -272,22 +282,19 @@ header {
   flex-wrap: wrap;
   color: white;
   letter-spacing: 1px;
-  /* margin-inline-end: 15px; */
   padding: 10px;
 
   background-color: rgb(74, 171, 167);
   border-radius: 1rem;
   border: 3px rgb(0, 0, 0) solid;
 }
+
 .keyword-filter span {
   margin: 10px;
   cursor: pointer;
 }
 
 /* GALLERY */
-.gallery-container {
-  margin-top: 130px;
-}
 
 .gallery {
   display: grid;
@@ -320,7 +327,6 @@ header {
 /* MEMES-GALLERY */
 
 .memes-container {
-  margin-top: 130px;
   display: none;
 }
 
@@ -381,7 +387,6 @@ header {
   border: 5px rgb(39, 24, 152) solid;
   color: #58c93a;
   background-color: #d9ffce;
-  /* transition: 0.3s; */
 }
 
 .btn-container > * {
@@ -395,22 +400,17 @@ header {
 .btn-container:hover > * {
   text-decoration: none;
   color: rgb(39, 24, 152);
-  /* font-size: 2.5em; */
 }
 
 /* FOOTER */
 
 footer {
-  position: fixed;
   width: 100%;
   height: 80px;
   color: white;
   font-size: 1.5rem;
   background-color: rgb(39, 24, 152);
-  /* margin-top: 10px; */
-  /* top: calc(100vh - 80px); */
   bottom: 0;
-  /* border-radius: 3em; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -438,6 +438,10 @@ body.menu-open .main-screen {
 
 /* HELPERS */
 
+.fix {
+  color: rgba(0, 0, 0, 0);
+}
+
 /* flex */
 
 .flex {
@@ -463,14 +467,11 @@ body.menu-open .main-screen {
 @media (max-width: 840px) {
   header {
     height: 70px;
-    /* background-color: rgb(39, 24, 152); */
-    /* margin: 5px; */
-    /* border-radius: 3em; */
   }
 
   .main-nav {
     position: fixed;
-    top: 0;
+    top: 70px;
     right: 0;
     height: 100vh;
     flex-direction: column;
@@ -479,20 +480,17 @@ body.menu-open .main-screen {
     transform: translateX(100%);
     transition: transform 0.6s, box-shadow 0.6s;
     justify-content: stretch;
-    align-items: flex-start;
+    align-items: flex-end;
+  }
+
+  .main-nav button {
+    height: 100px;
+    padding-top: 50px;
   }
 
   body.menu-open .main-nav {
     transform: translateX(0);
     box-shadow: -2px -2px 20px rgba(255, 255, 255, 0.25);
-  }
-  .main-nav > *:not(:last-child) {
-    margin: 0;
-  }
-  .main-nav a {
-    display: block;
-    padding: 10px 16px;
-    transition: background 0.3s;
   }
 
   .btn-menu {
@@ -512,7 +510,6 @@ body.menu-open .main-screen {
   }
 
   .main-contant {
-    margin-top: 90px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -530,7 +527,6 @@ body.menu-open .main-screen {
 
   .options-bar {
     align-items: center;
-    margin: 10px 15px 55px;
   }
 
   .line-buttons {
@@ -551,20 +547,11 @@ body.menu-open .main-screen {
   .gallery-bar {
     flex-direction: column;
     align-items: stretch;
-    /* margin: 20px; */
-    margin-top: 0;
-  }
-
-  .gallery-container {
-    position: absolute;
-    top: 80px;
-    width: 100%;
-    margin-top: 0px;
   }
 
   .search-bar {
+    margin: 0px;
     margin-bottom: 10px;
-    height: 100%;
     padding: 0px;
   }
   .txt-input {
@@ -572,9 +559,8 @@ body.menu-open .main-screen {
     height: 100%;
     padding: 10px;
   }
-
-  .memes-container {
-    margin-top: 90px;
+  .canvas {
+    margin-bottom: 10px;
   }
 }
 

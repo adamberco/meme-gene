@@ -26,7 +26,15 @@
     <div class="gallery-container">
         <div class="gallery-bar flex">
             <div class="search-bar flex">
-                <input type="text" placeholder="Search" oninput="onSetFilter(this.value)" autofocus>
+                <input type="text" list="keys" placeholder="Search" oninput="onSetFilter(this.value)" autofocus>
+                <datalist id="keys">
+                    <option value="Funny">
+                    <option value="Political">
+                    <option value="Kids">
+                    <option value="Animals">
+                    <option value="Cats">
+                    <option value="Cartoon">
+                </datalist>
             </div>
             <div class="keyword-filter flex">
                 <span onclick="onSetFilter(this.innerText)">Funny</span><span
@@ -47,13 +55,23 @@
         <section class="btn-container"></section>
         <button class="exit" onclick="toggleModal()">X</button>
     </div>
-    <footer>coffeeright2021 - Developed by Adam Bercovich</footer>
+    <footer>coffeeright2021 - Developed by Adam Bercovich
+        <!-- font-fix -->
+        <span class="fix" style="font-family: Apex;">.</span>
+        <span class="fix" style="font-family: Comic;">.</span>
+        <span class="fix" style="font-family: Gest;">.</span>
+        <span class="fix" style="font-family: Sunny;">.</span>
+    </footer>
 
     <script src=" js/main.js"></script>
     <script src="js/uploadService.js"></script>
     <script src="js/storage-service.js"></script>
     <script src="js/memeService.js"></script>
+    <script src="js/memeControler.js"></script>
     <script src="js/galleryService.js"></script>
+    <script src="js/galleryControler.js"></script>
+    <script src="js/editorService.js"></script>
+    <script src="js/editorControler.js"></script>
 
 </body>
 
