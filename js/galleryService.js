@@ -102,12 +102,12 @@ function onSetFilter(filterBy) {
 
 function setFilter(filterBy) {
     let filter = filterBy.toLowerCase()
+    if (filter === 'all') filter = ''
     console.log('setFilter filterBy', filter)
     gFilterBy = filter
 }
 
 function getImgForDisplay() {
-    console.log('getImgForDisplay')
     var imgs
     if (!gFilterBy) imgs = gImgs;
     else imgs = gImgs.filter(function (img) {

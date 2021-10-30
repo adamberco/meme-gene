@@ -1,35 +1,48 @@
-'use strict'
+// 'use strict'
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 const key = 'userMemeDB'
 
 let gElCanvas
 let gCtx
-let gCtxSize = 300
+let gCtxSize
 let gUserMemes = []
 let gNextId = 101
 
-let gMeme = {
-    selectedImgId: null,
-    selectedLineIdx: null,
-    lines: [
-        {
-            txt: 'I never eat Falafel',
-            size: 40,
-            align: 'center',
-            color: 'white',
-            posY: 50,
-            isDrag: false
+function initGmeme() {
+    gMeme = {
+        selectedImgId: null,
+        selectedLineIdx: 0,
 
-        },
-    ]
+        lines: [
+            {
+                txt: 'Click to enter funny line',
+                size: 28,
+                align: 'center',
+                color: 'white',
+                posY: 50,
+                posX: gCtxSize / 2,
+                isDrag: false
+            },
+            {
+                txt: 'Click to enter funny line',
+                size: 28,
+                align: 'center',
+                color: 'white',
+                posY: gCtxSize - 20,
+                posX: gCtxSize / 2,
+                isDrag: false
+            },
+        ]
+    }
 }
 
 function renderEditor(imgId) {
+    initGmeme()
     setImg(imgId)
     let strHtml = `
     <div class="canvas-container">
     <canvas class="canvas" height="${gCtxSize}" width="${gCtxSize}"
-     onclick = "canvasClicked(event)"></canvas>
+     onclick = "canvasClicked(event)" ></canvas>
     </div>
     <section class="options-bar">
     <input class="txt-input" type="text" placeholder="Change ME!"
@@ -45,7 +58,7 @@ function renderEditor(imgId) {
         <button class="increase/decrease minus" onclick="setFontSize('-')"></button>
         <button class="up/down up" onclick="setLinePos('up')"></button>
         <button class="up/down down" onclick="setLinePos('down')"></button>
-        <input class="color" type="color" name="" id="" onchange="setLineColor(this.value)">
+        <input class="color" type="color" name="" id="" value = "#ffffff" oninput="setLineColor(this.value)">
         </section>
     <section class="finish-buttons flex">
         <button><a class="download" href="#" onclick="downloadMeme(this)" download="myphoto">Download</a></button>
@@ -53,11 +66,13 @@ function renderEditor(imgId) {
     </section>
     </section>
     `
+
     document.querySelector('.main-contant').innerHTML = strHtml
     document.querySelector('.main-contant').style.display = 'flex'
     gElCanvas = document.querySelector('.canvas');
     gCtx = gElCanvas.getContext('2d');
-    resizeCanvas()
+    gElCanvas.width = gCtxSize
+    gElCanvas.height = gCtxSize
     addListeners()
 
     document.querySelector('.gallery-container').style.display = 'none'
@@ -69,6 +84,7 @@ function setLineColor(color) {
     let line = getLine()
     line.color = color
     renderMeme()
+    return color
 }
 
 function getUserMemes() {
@@ -100,6 +116,7 @@ function downloadMeme(elLink) {
 
 // Render gMeme
 function renderMeme() {
+
     //render img by id
     let img = new Image();
     img.src = getImg(gMeme.selectedImgId).url
@@ -119,8 +136,9 @@ function renderLines() {
         gCtx.strokeStyle = 'black';
         gCtx.fillStyle = line.color;
         gCtx.font = `${line.size}px Impact`;
-        gCtx.fillText(line.txt, gCtxSize / 2, line.posY);
-        gCtx.strokeText(line.txt, gCtxSize / 2, line.posY);
+        gCtx.fillText(line.txt, line.posX, line.posY);
+        gCtx.strokeText(line.txt, line.posX, line.posY);
+        line.txtLength = gCtx.measureText(line.txt).width
     });
 }
 
@@ -130,10 +148,10 @@ function markLine() {
     let markedLine = getLine()
     gCtx.beginPath();
     gCtx.lineWidth = 2;
-    gCtx.moveTo(2, markedLine.posY - markedLine.size);
-    gCtx.lineTo(gElCanvas.width - 2, markedLine.posY - markedLine.size);
-    gCtx.lineTo(gElCanvas.width - 2, markedLine.posY + 5);
-    gCtx.lineTo(2, markedLine.posY + 5);
+    gCtx.moveTo(markedLine.posX - markedLine.txtLength / 2 - 10, markedLine.posY - markedLine.size + 3);
+    gCtx.lineTo(markedLine.posX + markedLine.txtLength / 2 + 10, markedLine.posY - markedLine.size + 3);
+    gCtx.lineTo(markedLine.posX + markedLine.txtLength / 2 + 10, markedLine.posY + 5);
+    gCtx.lineTo(markedLine.posX - markedLine.txtLength / 2 - 10, markedLine.posY + 5);
     gCtx.closePath();
     gCtx.strokeStyle = 'white';
     gCtx.stroke();
@@ -147,13 +165,13 @@ function getImg(id) {
 // Set a new image that clicked
 function setImg(imgId) {
     gMeme.selectedImgId = +imgId
-    renderMeme(gMeme)
+    renderMeme()
 }
 
 // Set the text that inputted
 function setTxt(txt) {
     getLine().txt = txt
-    renderMeme(gMeme)
+    renderMeme()
 }
 
 // Change the font size by button click
@@ -167,6 +185,8 @@ function setFontSize(val) {
             getLine().size -= 3
             break
     }
+    // markLine()
+
     renderMeme(gMeme)
 }
 
@@ -208,16 +228,18 @@ function deleteLine() {
 }
 
 function addLine() {
+    let color = document.querySelector('.color').value
     let posY
     if (gMeme.lines.length === 0) posY = 50
     else if (gMeme.lines.length === 1) posY = gElCanvas.height - 20
-    else posY = gElCanvas.height / 2 - 20
+    else posY = gElCanvas.height / 2
     let newLine = {
-        txt: `I'm a new line!! `,
-        size: 40,
+        txt: `Click to enter funny line`,
+        size: 28,
         align: 'center',
-        color: 'white',
+        color: color,
         posY: posY,
+        posX: gCtxSize / 2,
         isDrag: false
     }
     gMeme.lines.push(newLine)
@@ -253,8 +275,6 @@ function setLineDrag(isDrag) {
     line.isDrag = isDrag
 }
 
-
-
 // handale canvas mousedown/touchstart event
 function onDown(ev) {
     if (gTouchEvs.includes(ev.type)) {
@@ -277,10 +297,10 @@ function onMove(ev) {
     if (!line) return
     if (line.isDrag) {
         const pos = getEvPos(ev)
-        // const dx = pos.x - gStartPos.x
+        const dx = pos.x - line.posX
         const dy = pos.y - line.posY
         // gStartPos = pos
-        moveLine(dy)
+        moveLine(dx, dy)
         // moveCircle(dx, dy)
         // renderCanvas()
         renderMeme()
@@ -288,9 +308,11 @@ function onMove(ev) {
 }
 
 // move the line by drag
-function moveLine(dy) {
+function moveLine(dx, dy) {
     const line = getLine();
+    line.posX += dx
     line.posY += dy
+
 }
 
 // handale canvas mouseup/touchend event
@@ -314,12 +336,17 @@ function canvasClicked(ev) {
     }
 
     if (clickedLineIdx !== -1) {
-        gMeme.selectedLineIdx = clickedLineIdx
+        // gMeme.selectedLineIdx = clickedLineIdx
+        gMeme.lines.push(gMeme.lines[clickedLineIdx])
+        console.log('gMeme.lines', gMeme.lines[clickedLineIdx])
+        gMeme.lines.splice(clickedLineIdx, 1)
+        gMeme.selectedLineIdx = gMeme.lines.length - 1
         document.querySelector('.txt-input').value = getLine().txt
         renderMeme()
         return true
     } else {
         gMeme.selectedLineIdx = null
+        document.querySelector('.txt-input').value = ''
         renderMeme()
         return false
 
@@ -331,7 +358,7 @@ function addListeners() {
     addMouseListeners()
     addTouchListeners()
     window.addEventListener('resize', () => {
-        resizeCanvas()
+        setCanvasSize()
         renderMeme()
     })
 }
@@ -340,7 +367,23 @@ function addMouseListeners() {
     gElCanvas.addEventListener('mousemove', onMove)
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mouseup', onUp)
+    window.addEventListener('keydown', changeText);
+
+
 }
+
+function changeText(ev) {
+    const input = document.querySelector('.txt-input');
+    if (input === document.activeElement) return
+    if (gMeme.selectedLineIdx === null) return
+    console.log('ev', ev.key)
+    if (ev.key === 'Enter' || ev.key === 'Shift' || ev.key === 'Alt' || ev.key === 'Control' || ev.key === 'Tab' || ev.key === 'ArrowRight' || ev.key === 'ArrowLeft' || ev.key === 'ArrowUp' || ev.key === 'ArrowDown') return
+    if (getLine().txt === 'Click to enter funny line') getLine().txt = ''
+    getLine().txt = (ev.key === 'Backspace') ? getLine().txt.slice(0, getLine().txt.length - 1) : getLine().txt.concat(ev.key)
+    document.querySelector('.txt-input').value = getLine().txt
+    renderMeme()
+}
+
 
 function addTouchListeners() {
     gElCanvas.addEventListener('touchmove', onMove)

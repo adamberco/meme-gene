@@ -35,11 +35,8 @@ button {
 header {
   position: fixed;
   height: 100px;
-  width: 95%;
+  width: 100%;
   background-color: #271898;
-  margin: 20px;
-  /* margin-right: 40px; */
-  border-radius: 3em;
   top: 0;
   z-index: 1;
 }
@@ -91,7 +88,7 @@ header {
   display: flex;
   flex-direction: column;
   background-color: #383b42;
-  border-radius: 3em;
+  border-radius: 5px;
   border: 2px solid white;
 }
 .txt-input {
@@ -118,7 +115,8 @@ header {
 }
 
 .line-buttons {
-  justify-content: center;
+  justify-content: space-between;
+  margin: 10px;
 }
 
 .line-buttons button:hover {
@@ -222,7 +220,7 @@ header {
 .finish-buttons button {
   width: 120px;
   height: 30px;
-  margin: 0;
+  margin-bottom: 10px;
   padding: 5px 10px;
   background-color: #271898;
   color: #ffffff;
@@ -240,24 +238,24 @@ header {
 /*Gallery BAR*/
 
 .gallery-bar {
-  justify-content: space-evenly;
+  /* width: 100%; */
+  justify-content: space-between;
   align-items: center;
+  margin: 15px;
   /* margin-inline-start: 30px;
   margin-inline-end: 30px; */
 }
 
 .search-bar {
   flex: 1;
-
   justify-content: space-evenly;
   align-items: center;
-  margin: 10px;
-  margin-inline-start: 20px;
+  padding-inline-end: 10px;
 }
 
 .search-bar input {
   flex: 1;
-  height: 6vh;
+  height: 100%;
   font-size: 1.25rem;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   border-radius: 1rem;
@@ -274,7 +272,9 @@ header {
   flex-wrap: wrap;
   color: white;
   letter-spacing: 1px;
-  margin-inline-end: 15px;
+  /* margin-inline-end: 15px; */
+  padding: 10px;
+
   background-color: rgb(74, 171, 167);
   border-radius: 1rem;
   border: 3px rgb(0, 0, 0) solid;
@@ -291,9 +291,9 @@ header {
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-template-rows: auto;
-  gap: 10px;
+  gap: 5px;
   justify-items: center;
   justify-content: space-evenly;
   margin: 15px;
@@ -304,12 +304,14 @@ header {
 }
 
 .gallery > * {
-  width: 200px;
-  height: 200px;
+  height: 100%;
+  width: 100%;
+  max-width: 200px;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.5s;
 }
+
 .gallery img:hover {
   transform: scale(1.1);
   box-shadow: white 0 0 0px 3px;
@@ -319,6 +321,7 @@ header {
 
 .memes-container {
   margin-top: 130px;
+  display: none;
 }
 
 /* MODAL */
@@ -398,12 +401,16 @@ header {
 /* FOOTER */
 
 footer {
+  position: fixed;
+  width: 100%;
   height: 80px;
   color: white;
   font-size: 1.5rem;
   background-color: rgb(39, 24, 152);
-  margin: 10px 20px;
-  border-radius: 3em;
+  /* margin-top: 10px; */
+  /* top: calc(100vh - 80px); */
+  bottom: 0;
+  /* border-radius: 3em; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -456,9 +463,9 @@ body.menu-open .main-screen {
 @media (max-width: 840px) {
   header {
     height: 70px;
-    background-color: rgb(39, 24, 152);
-    margin: 5px;
-    border-radius: 3em;
+    /* background-color: rgb(39, 24, 152); */
+    /* margin: 5px; */
+    /* border-radius: 3em; */
   }
 
   .main-nav {
@@ -501,7 +508,7 @@ body.menu-open .main-screen {
 
   footer {
     height: 50px;
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .main-contant {
@@ -523,6 +530,12 @@ body.menu-open .main-screen {
 
   .options-bar {
     align-items: center;
+    margin: 10px 15px 55px;
+  }
+
+  .line-buttons {
+    width: 300px;
+    justify-content: space-between;
   }
 
   .gallery {
@@ -531,20 +544,43 @@ body.menu-open .main-screen {
   }
 
   .gallery > * {
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
   }
 
   .gallery-bar {
     flex-direction: column;
-    margin: 20px;
+    align-items: stretch;
+    /* margin: 20px; */
+    margin-top: 0;
   }
 
   .gallery-container {
-    margin-top: 70px;
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    margin-top: 0px;
+  }
+
+  .search-bar {
+    margin-bottom: 10px;
+    height: 100%;
+    padding: 0px;
+  }
+  .txt-input {
+    margin: 10px;
+    height: 100%;
+    padding: 10px;
   }
 
   .memes-container {
     margin-top: 90px;
+  }
+}
+
+@media (max-width: 500px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    grid-template-rows: auto;
   }
 }

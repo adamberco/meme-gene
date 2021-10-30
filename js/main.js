@@ -1,19 +1,25 @@
 'use strict'
 
 function init() {
+    setCanvasSize()
     renderGallery()
     getUserMemes()
 }
 
-function resizeCanvas() {
+function setCanvasSize() {
+    // let gCtxSize
+
     var elheader = document.querySelector('.main-header');
     if (elheader.offsetWidth <= 420) {
         gCtxSize = 300
 
     } else gCtxSize = 450
-    gElCanvas.width = gCtxSize
-    gElCanvas.height = gCtxSize
+    if (gElCanvas) {
+        gElCanvas.width = gCtxSize
+        gElCanvas.height = gCtxSize
+    }
 }
+
 
 function toggleMenu() {
     if (document.querySelector('.main-header').offsetWidth >= 840) return
