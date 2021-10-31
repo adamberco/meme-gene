@@ -2,12 +2,12 @@
 function initGmeme() {
     gMeme = {
         selectedImgId: null,
-        selectedLineIdx: null,
+        selectedLineIdx: 0,
 
         lines: [
             {
-                txt: 'Click to enter funny line',
-                size: 28,
+                txt: 'Enter funny line',
+                size: 40,
                 align: 'center',
                 color: 'white',
                 strokeColor: 'black',
@@ -17,8 +17,8 @@ function initGmeme() {
                 isDrag: false
             },
             {
-                txt: 'Click to enter funny line',
-                size: 28,
+                txt: 'Enter funny line',
+                size: 40,
                 align: 'center',
                 color: 'white',
                 strokeColor: 'black',
@@ -31,13 +31,12 @@ function initGmeme() {
     }
 }
 
-
 function getgMeme() {
     return gMeme
 }
 
 // get the selected line
-function getLine() {
+function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 
@@ -46,10 +45,10 @@ function setFontSize(val) {
     if (gMeme.selectedLineIdx === null) return
     switch (val) {
         case '+':
-            getLine().size += 3
+            getSelectedLine().size += 3
             break
         case '-':
-            getLine().size -= 3
+            getSelectedLine().size -= 3
             break
     }
     renderMeme(gMeme)
@@ -57,15 +56,16 @@ function setFontSize(val) {
 
 function setAlign(val) {
     if (gMeme.selectedLineIdx === null) return
+    let line = getSelectedLine()
     switch (val) {
         case 'left':
-            getLine().posX = 0 + getLine().txtLength / 2
+            line.posX = 15 + line.txtLength / 2
             break
         case 'center':
-            getLine().posX = gCtxSize / 2
+            line.posX = gCtxSize / 2
             break
         case 'right':
-            getLine().posX = gCtxSize - getLine().txtLength / 2
+            line.posX = gCtxSize - line.txtLength / 2 - 15
             break
     }
     renderMeme(gMeme)
@@ -77,19 +77,19 @@ function setFont(val) {
     if (gMeme.selectedLineIdx === null) return
     switch (val) {
         case 'Impact':
-            getLine().font = 'Impact'
+            getSelectedLine().font = 'Impact'
             break
         case 'Apex':
-            getLine().font = 'Apex'
+            getSelectedLine().font = 'Apex'
             break
         case 'Comic':
-            getLine().font = 'Comic'
+            getSelectedLine().font = 'Comic'
             break
         case 'Gest':
-            getLine().font = 'Gest'
+            getSelectedLine().font = 'Gest'
             break
         case 'Sunny':
-            getLine().font = 'Sunny'
+            getSelectedLine().font = 'Sunny'
             break
     }
     renderMeme(gMeme)
@@ -97,15 +97,17 @@ function setFont(val) {
 
 function setLineColor(color) {
     if (gMeme.selectedLineIdx === null) return
-    let line = getLine()
+    let line = getSelectedLine()
     line.color = color
+    document.querySelector('.line-color').style.backgroundColor = color
     renderMeme()
     return color
 }
 function setStrokeColor(color) {
     if (gMeme.selectedLineIdx === null) return
-    let line = getLine()
+    let line = getSelectedLine()
     line.strokeColor = color
+    document.querySelector('.stroke-color').style.backgroundColor = color
     renderMeme()
     return color
 }

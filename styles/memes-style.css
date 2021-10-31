@@ -1,0 +1,25 @@
+/* MEMES-GALLERY */
+
+.memes-container {
+  display: none;
+}
+.memes-container div {
+  position: relative;
+}
+
+.memes-container img {
+  height: 100%;
+  width: 100%;
+  max-width: 200px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.del-meme {
+  position: absolute;
+  color: red;
+  font-size: 18px;
+  right: 5px;
+  z-index: 1;
+}

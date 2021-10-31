@@ -21,10 +21,7 @@ function userMemeSelect(memeId) {
 }
 
 function deleteMeme(id) {
-    console.log('hi!')
-    console.log('meme!', id)
     let idx = gUserMemes.findIndex(meme => meme.id === id)
-    console.log('idx', idx)
     gUserMemes.splice(idx, 1)
     saveToStorage(key, gUserMemes)
     openMemes()

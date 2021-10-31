@@ -1,0 +1,189 @@
+/* TYPOGRAPHY */
+
+@font-face {
+  font-family: "Apex";
+  src: url(../fonts/Apex-SemiBold.ttf);
+}
+@font-face {
+  font-family: "Comic";
+  src: url(../fonts/ComicNeue-Bold.ttf);
+}
+@font-face {
+  font-family: "Gest";
+  src: url(../fonts/Gest-Regular.otf);
+}
+
+@font-face {
+  font-family: "Sunny";
+  src: url(../fonts/SunnyspellsRegular.otf);
+}
+
+/* MAIN-CONTANT */
+
+.main-contant {
+  margin: 15px;
+  display: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+/* CANVAS */
+
+.canvas-container {
+  display: inline-block;
+}
+
+.canvas {
+  background-color: #fff;
+  cursor: grab;
+  border-radius: 30px;
+  border: 8px solid #383b42;
+}
+
+.options-bar {
+  display: flex;
+  flex-direction: column;
+  background-color: #383b42;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+.txt-input {
+  line-height: 2em;
+  border-radius: 10px;
+  margin: 20px 10px;
+  width: 300px;
+}
+
+.options-bar .text-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 10px;
+  margin-right: 10px;
+  flex-wrap: wrap;
+}
+
+.text-buttons select {
+  height: 30px;
+  align-self: center;
+  flex: 1;
+  margin-left: 5px;
+}
+
+.options-bar button {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 10px;
+  text-align: center;
+  margin: 10px;
+}
+
+.line-buttons {
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.line-buttons button {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+}
+
+.line-buttons button:hover {
+  box-shadow: white 0 0 0px 6px;
+  background-color: #fff;
+}
+
+.switch-line {
+  background-image: url(../img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png);
+  background-color: blue;
+  box-shadow: blue 0 0 0px 6px;
+}
+
+.add-line {
+  background-image: url(../img/ICONS/add.png);
+  background-color: green;
+  box-shadow: green 0 0 0px 6px;
+}
+
+.delete-line {
+  background-image: url(../img/ICONS/trash.png);
+  background-color: red;
+  box-shadow: red 0 0 0px 6px;
+}
+.save-meme {
+  background-image: url(../img/ICONS/save.png);
+  background-color: yellow;
+  box-shadow: yellow 0 0 0px 6px;
+}
+
+.text-buttons {
+  background-color: #19a59f;
+  width: 300px;
+  border-radius: 10px;
+  margin: 10px;
+}
+.text-buttons button:hover {
+  background-color: #383b42;
+}
+
+.text-buttons button {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: #fff;
+  box-shadow: black 0 0 0px 3px;
+}
+
+.plus {
+  background-image: url(../img/ICONS/increase\ font\ -\ icon.png);
+}
+.minus {
+  background-image: url(../img/ICONS/decrease\ font\ -\ icon.png);
+}
+
+.align-left {
+  background-image: url(../img/ICONS/align-to-left.png);
+}
+
+.text-buttons .align-center {
+  background-image: url(../img/ICONS/center-text-alignment.png);
+}
+
+.align-right {
+  background-image: url(../img/ICONS/align-to-right.png);
+}
+
+.line-color {
+  background-image: url(../img/ICONS/paint-board-and-brush.png);
+}
+.stroke-color {
+  background-image: url(../img/ICONS/text\ stroke.png);
+}
+
+button input {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.finish-buttons {
+  justify-content: space-evenly;
+}
+
+.finish-buttons button {
+  width: 120px;
+  height: 30px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+  background-color: #271898;
+  color: #ffffff;
+}
+
+.finish-buttons button:hover {
+  background-color: #5b51a5;
+}
+
+.finish-buttons button a {
+  color: #ffffff;
+  text-decoration: none;
+}

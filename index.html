@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meme-Gene</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body onload="init()">
@@ -22,7 +22,8 @@
             <button class="btn-menu" onclick="toggleMenu()">☰</button>
         </nav>
     </header>
-    <main class="main-contant"></main>
+    <main class="main-contant">
+    </main>
     <div class="gallery-container">
         <div class="gallery-bar flex">
             <div class="search-bar flex">
@@ -71,14 +72,14 @@
     </footer>
 
     <script src=" js/main.js"></script>
-    <script src="js/uploadService.js"></script>
-    <script src="js/storage-service.js"></script>
-    <script src="js/memeService.js"></script>
-    <script src="js/memeControler.js"></script>
-    <script src="js/galleryService.js"></script>
-    <script src="js/galleryControler.js"></script>
-    <script src="js/editorService.js"></script>
-    <script src="js/editorControler.js"></script>
+    <script src="js/services/upload.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/meme.service.js"></script>
+    <script src="js/services/gallery.service.js"></script>
+    <script src="js/controllers/meme-controller.js"></script>
+    <script src="js/controllers/gallery-controller.js"></script>
+    <script src="js/services/editor.service.js"></script>
+    <script src="js/controllers/editor-controller.js"></script>
 
 </body>
 

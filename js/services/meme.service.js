@@ -8,7 +8,6 @@ function getUserMemes() {
 }
 
 function saveMeme() {
-    console.log('saved')
     gNextId = (!gUserMemes.length) ? 101 : gUserMemes.length + 101
     const data = gElCanvas.toDataURL('image/jpeg');
     let newMeme = JSON.parse(JSON.stringify(gMeme));
